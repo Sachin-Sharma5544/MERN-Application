@@ -17,11 +17,17 @@ router.post("/", (req, res, next) => {
     const { title, reps, load } = req.body;
 
     const workout = new Workout({ title, reps, load });
-    workout.save().then((data) => {
-        console.log(data);
-    });
+    workout
+        .save()
+        .then((data) => {
+            console.log(data);
+            res.status(201).json(data);
+        })
+        .catch((error) => {
+            res.status(400).json({ error: error.message });
+        });
 
-    res.json({ mssg: "Record added successfully" });
+    // res.json({ mssg: "Record added successfully" });
 
     // Workout.create({ title, reps, load })
     //     .then((data) => {
