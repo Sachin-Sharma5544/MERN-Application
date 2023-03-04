@@ -1,59 +1,40 @@
-const Workout = require("../models/workouts");
+const workoutController = require("../controllers/workoutControllers");
+const newWorkoutController = require("../controllers/workoutContAsyncAwait");
 
 const router = require("express").Router();
 
+/* this request goes to the controller, with promise syntax */
+
 //Get All Workouts
-router.get("/", (req, res) => {
-    res.json({ mssg: "All workouts fetched successfully" });
-});
+// router.get("/", workoutController.getAllWorkouts);
 
 //Get Single Workout
-router.get("/:id", (req, res) => {
-    res.json({ mssg: "Single item fetched successfully" });
-});
+// router.get("/:id", workoutController.getSingleWorkout);
 
 //Post a new Workout
-router.post("/", (req, res, next) => {
-    const { title, reps, load } = req.body;
+// router.post("/", workoutController.postNewWorkout);
 
-    const workout = new Workout({ title, reps, load });
-    workout
-        .save()
-        .then((data) => {
-            console.log(data);
-            res.status(201).json(data);
-        })
-        .catch((error) => {
-            res.status(400).json({ error: error.message });
-        });
+//Delete a new Workout
+// router.delete("/:id", workoutController.deleteWorkout);
 
-    // res.json({ mssg: "Record added successfully" });
+//Update a new Workout
+router.patch("/:id", workoutController.patchWorkout);
 
-    // Workout.create({ title, reps, load })
-    //     .then((data) => {
-    //         console.log(data);
-    //         res.status(201).json(data);
-    //     })
-    //     .catch((error) => {
-    //         res.status(400).json({ error: error.message });
-    //     });
+/* this request goes to the controller, with async await syntax*/
 
-    // try {
-    //     const workout = await Workout.create({ title, load, reps });
-    //     res.status(200).json(workout);
-    // } catch (error) {
-    //     res.status(400).json({ error: error.message });
-    // }
-});
+//Get All Workouts
+router.get("/", newWorkoutController.getAllWorkouts);
+
+//Get Single Workout
+router.get("/:id", newWorkoutController.getSingleWorkout);
 
 //Post a new Workout
-router.delete("/:id", (req, res) => {
-    res.json({ mssg: "Record deleted successfully" });
-});
+router.post("/", newWorkoutController.postNewWorkout);
 
-//Post a new Workout
-router.patch("/:id", (req, res) => {
-    res.json({ mssg: "Record updated successfully" });
-});
+//Delete a new Workout
+// router.delete("/:id", newWorkoutController.deleteWorkout);
+
+//Update a new Workout
+// router.patch("/:id", newWorkoutController.patchWorkout);
 
 module.exports = router;
