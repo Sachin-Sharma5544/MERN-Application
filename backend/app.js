@@ -1,11 +1,18 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
-const PORT = 4000;
+
+//The middleware to print the method type and path
+app.use((req, res, next) => {
+    console.log(req.method, req.path);
+    next();
+});
 
 app.get("/", (req, res) => {
     res.json({ mssg: "Hello" });
 });
 
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server started on port ${process.env.PORT}`);
 });
