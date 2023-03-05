@@ -1,6 +1,7 @@
 const workoutsRoute = require("./routes/workouts");
 
 require("dotenv").config();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
@@ -8,6 +9,7 @@ const app = express();
 //Middleware
 
 //This middleware helps us read data trom the body
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
