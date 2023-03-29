@@ -12,9 +12,6 @@ const WorkoutDetails = ({ workout, deleteWorkoutHandler }) => {
                     <strong>Reps</strong>: {workout.reps}
                 </p>
                 <p>{workout.createdAt}</p>
-                <span onClick={() => deleteWorkoutHandler(workout._id)}>
-                    delete
-                </span>
             </div>
         </div>
     );

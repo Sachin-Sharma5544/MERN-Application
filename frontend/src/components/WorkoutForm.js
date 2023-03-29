@@ -7,6 +7,7 @@ const WorkoutForm = () => {
     const [reps, setReps] = useState("");
     const [load, setLoad] = useState("");
     const [error, setError] = useState(null);
+    const [emptyFields, setEmptyFields] = useState([]);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -26,6 +27,7 @@ const WorkoutForm = () => {
 
         if (!response.ok) {
             setError(jsonData.error);
+            setEmptyFields(jsonData.emptyFields);
         }
 
         if (response.ok) {
@@ -34,6 +36,7 @@ const WorkoutForm = () => {
             setLoad("");
             setReps("");
             navigate("/");
+            setEmptyFields([]);
         }
     };
 
@@ -47,7 +50,11 @@ const WorkoutForm = () => {
                     id="title"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
+                    className={emptyFields.includes("title") ? "Error" : null}
                 />
+                {emptyFields.includes("title") ? (
+                    <p>Please enter title</p>
+                ) : null}
 
                 <label>Reps: </label>
                 <input
@@ -55,7 +62,9 @@ const WorkoutForm = () => {
                     id="reps"
                     value={reps}
                     onChange={(e) => setReps(e.target.value)}
+                    className={emptyFields.includes("reps") ? "Error" : null}
                 />
+                {emptyFields.includes("reps") ? <p>Please enter reps</p> : null}
 
                 <label>Load: </label>
                 <input
@@ -63,19 +72,12 @@ const WorkoutForm = () => {
                     id="load"
                     value={load}
                     onChange={(e) => setLoad(e.target.value)}
+                    className={emptyFields.includes("load") ? "Error" : null}
                 />
+                {emptyFields.includes("load") ? <p>Please enter load</p> : null}
 
                 <button>Add Workout</button>
             </form>
-
-            {error && <div>{error}</div>}
-
-            {/* <p>title: {title}</p>
-            <p>reps: {reps}</p>
-
-            <p>load: {load}</p>
-
-            <p>error: {error}</p> */}
         </div>
     );
 };

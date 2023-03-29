@@ -23,14 +23,11 @@ const Home = () => {
     }, []);
 
     const deleteWorkoutHandler = async (id) => {
-        console.log(id);
-        console.log(workouts);
-
         const response = await fetch("http://localhost:4000/workouts/" + id, {
             method: "DELETE",
         });
         const jsonData = await response.json();
-        navigate("/");
+        console.log(jsonData);
     };
 
     return (
