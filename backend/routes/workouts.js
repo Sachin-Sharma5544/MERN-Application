@@ -32,7 +32,7 @@ router.get("/:id", newWorkoutController.getSingleWorkout);
 router.post("/", newWorkoutController.postNewWorkout);
 
 //Delete a new Workout
-// router.delete("/:id", newWorkoutController.deleteWorkout);
+router.delete("/:id", newWorkoutController.deleteWorkout);
 
 //Update a new Workout
 // router.patch("/:id", newWorkoutController.patchWorkout);
