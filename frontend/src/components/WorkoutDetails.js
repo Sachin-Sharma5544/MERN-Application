@@ -1,4 +1,5 @@
 import React from "react";
+import { formatDistanceToNow } from "date-fns";
 
 const WorkoutDetails = ({ workout, deleteWorkoutHandler }) => {
     return (
@@ -11,7 +12,11 @@ const WorkoutDetails = ({ workout, deleteWorkoutHandler }) => {
                 <p>
                     <strong>Reps</strong>: {workout.reps}
                 </p>
-                <p>{workout.createdAt}</p>
+                <p>
+                    {formatDistanceToNow(new Date(workout.createdAt), {
+                        addSuffix: true,
+                    })}
+                </p>
             </div>
         </div>
     );
