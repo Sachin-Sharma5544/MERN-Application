@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Button from "../components/Button";
 import WorkoutDetails from "../components/WorkoutDetails";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
@@ -10,9 +10,7 @@ const Home = () => {
     useEffect(() => {
         const fetchWorkouts = async () => {
             const response = await fetch("http://localhost:4000/workouts");
-            console.log(response);
             const jsonData = await response.json();
-
             if (response.ok) {
                 dispatch({ type: "SET_WORKOUTS", payload: jsonData });
             }
@@ -25,14 +23,10 @@ const Home = () => {
         const response = await fetch("http://localhost:4000/workouts/" + id, {
             method: "DELETE",
         });
-
         const jsonData = await response.json();
-
         if (response.ok) {
             dispatch({ type: "DELETE_WORKOUT", payload: jsonData });
         }
-
-        console.log(jsonData);
     };
 
     return (

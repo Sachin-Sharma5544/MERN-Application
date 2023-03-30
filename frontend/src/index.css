@@ -151,4 +151,55 @@ margin: 3rem auto;
   color: red;
 }
 
+/* Login & Signup form Styling */
+
+.login, .signup {
+
+  max-width: 600px;
+  border: 2px solid black;
+  margin: 2rem auto;
+  padding: 4rem 4rem;
+
+  border-radius: 10px;
+}
+
+.login input, .login label, .login h4, .login button,
+.signup input, .signup label, .signup h4, .signup button {
+  display: block;
+  margin: 2% 2%;
+}
+
+.login input, .signup input {
+  width: 96%;
+  font-size: 1.3rem;
+  padding: 5px 10px;
+}
+
+.login h3, .signup h3 { 
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 20px 0;
+  color: black;
+}
+
+.login button, .signup button {
+  background-color: white;
+  color: darkcyan;
+  padding: 10px 20px;
+  text-align: center;
+  border: 2px solid darkcyan;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.login button:hover, .signup button:hover {
+  background-color: darkcyan;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  border: 2px solid darkcyan;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
 
