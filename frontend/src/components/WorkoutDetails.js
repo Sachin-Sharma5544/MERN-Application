@@ -17,6 +17,9 @@ const WorkoutDetails = ({ workout, deleteWorkoutHandler }) => {
                         addSuffix: true,
                     })}
                 </p>
+                <span onClick={() => deleteWorkoutHandler(workout._id)}>
+                    Delete
+                </span>
             </div>
         </div>
     );

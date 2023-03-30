@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import WorkoutDetails from "../components/WorkoutDetails";
-import { useNavigate } from "react-router-dom";
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 
 const Home = () => {
-    const [workouts, setWorkouts] = useState(null);
-    const navigate = useNavigate();
+    // const [workouts, setWorkouts] = useState(null);
+    const { workouts, dispatch } = useWorkoutsContext();
 
     useEffect(() => {
         const fetchWorkouts = async () => {
@@ -15,7 +14,7 @@ const Home = () => {
             const jsonData = await response.json();
 
             if (response.ok) {
-                setWorkouts(jsonData);
+                dispatch({ type: "SET_WORKOUTS", payload: jsonData });
             }
         };
 
@@ -26,7 +25,13 @@ const Home = () => {
         const response = await fetch("http://localhost:4000/workouts/" + id, {
             method: "DELETE",
         });
+
         const jsonData = await response.json();
+
+        if (response.ok) {
+            dispatch({ type: "DELETE_WORKOUT", payload: jsonData });
+        }
+
         console.log(jsonData);
     };
 
