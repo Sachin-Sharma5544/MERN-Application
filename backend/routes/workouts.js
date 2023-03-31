@@ -1,7 +1,11 @@
 const workoutController = require("../controllers/workoutControllers");
 const newWorkoutController = require("../controllers/workoutContAsyncAwait");
+const requireAuth = require("../middleware/requireAuth");
 
 const router = require("express").Router();
+
+// require auth for all workout routes
+router.use(requireAuth);
 
 /* this request goes to the controller, with promise syntax */
 
