@@ -1,12 +1,15 @@
 import { useState } from "react";
+import useLoginHook from "../hooks/customHooks/useLoginHook";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { loginFunction, error, isLoading } = useLoginHook();
 
-    const loginHandler = (e) => {
+    const loginHandler = async (e) => {
         e.preventDefault();
-        console.log(email, password);
+        // console.log(email, password);
+        await loginFunction(email, password);
     };
 
     return (
@@ -28,7 +31,9 @@ const Login = () => {
                     value={password}
                 />
 
-                <button>Login</button>
+                <button disabled={isLoading}>Login</button>
+
+                {error && <div>{error}</div>}
             </form>
         </div>
     );
